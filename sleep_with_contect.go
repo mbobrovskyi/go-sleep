@@ -1,4 +1,4 @@
-package sleep
+package go_sleep
 
 import (
 	"context"

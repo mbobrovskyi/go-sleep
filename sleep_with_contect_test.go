@@ -1,8 +1,8 @@
-package sleep_test
+package go_sleep_test
 
 import (
 	"context"
-	"github.com/mbobrovskyi/go-sleep/pkg/sleep"
+	"github.com/mbobrovskyi/go-sleep"
 	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"
@@ -14,7 +14,7 @@ func TestSleepWithContext(t *testing.T) {
 
 	start := time.Now()
 
-	sleep.WithContext(context.Background(), duration)
+	go_sleep.WithContext(context.Background(), duration)
 
 	assert.Equal(t, seconds, int(time.Since(start)/time.Second))
 }
@@ -28,7 +28,7 @@ func TestSleepWithContextTimeout(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), duration)
 	defer cancel()
 
-	sleep.WithContext(ctx, time.Second)
+	go_sleep.WithContext(ctx, time.Second)
 
 	assert.Equal(t, seconds, int(time.Since(start)/time.Second))
 }
