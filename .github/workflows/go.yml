@@ -24,8 +24,10 @@ jobs:
     - name: CI Tools
       run: make ci-tools
 
-    - name: Lint
-      run: make lint
+    - name: golangci-lint
+      uses: golangci/golangci-lint-action@v4
+      with:
+        version: v1.54
 
     - name: Test
       run: make test
