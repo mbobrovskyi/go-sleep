@@ -10,24 +10,35 @@ on:
     branches: [ "main", "feature/ci" ]
 
 jobs:
-
-  build:
+  ling:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache: false
+          
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v4
+        with:
+          version: v1.54
+          
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
+    - name: Set up Go 
+      uses: actions/setup-go@v5
       with:
-        go-version: '1.20'
+        go-version: '1.22'
+        cache: false
 
     - name: CI Tools
       run: make ci-tools
-
-    - name: golangci-lint
-      uses: golangci/golangci-lint-action@v4
-      with:
-        version: v1.54
 
     - name: Test
       run: make test
