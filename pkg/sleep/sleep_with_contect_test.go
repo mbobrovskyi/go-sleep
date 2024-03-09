@@ -16,7 +16,7 @@ func TestSleepWithContext(t *testing.T) {
 
 	sleep.WithContext(context.Background(), duration)
 
-	assert.Equal(t, seconds, int(time.Now().Sub(start)/time.Second))
+	assert.Equal(t, seconds, int(time.Since(start)/time.Second))
 }
 
 func TestSleepWithContextTimeout(t *testing.T) {
@@ -30,5 +30,5 @@ func TestSleepWithContextTimeout(t *testing.T) {
 
 	sleep.WithContext(ctx, time.Second)
 
-	assert.Equal(t, seconds, int(time.Now().Sub(start)/time.Second))
+	assert.Equal(t, seconds, int(time.Since(start)/time.Second))
 }
