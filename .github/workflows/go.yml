@@ -9,22 +9,7 @@ on:
   pull_request:
     branches: [ "main", "feature/ci" ]
 
-jobs:
-  ling:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.22'
-          cache: false
-          
-      - name: golangci-lint
-        uses: golangci/golangci-lint-action@v4
-        with:
-          version: v1.54
-          
+jobs:          
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -40,5 +25,8 @@ jobs:
     - name: CI Tools
       run: make ci-tools
 
+    - name: Lint
+      run: make lint
+    
     - name: Test
       run: make test
