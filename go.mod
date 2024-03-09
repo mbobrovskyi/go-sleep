@@ -1,4 +1,4 @@
-module github.com/mbobrovskyi/go-sleep
+module github.com/mbobrovskyi/gosleep
 
 go 1.22.0
 
